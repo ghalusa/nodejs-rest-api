@@ -47,4 +47,4 @@ forever start server.js
 * Goran Halusa
 * [ghalusa@gmail.com](mailto:ghalusa@gmail.com)
 * Issue Tracker
-* [https://bitbucket.org/ghalusa/tenable_configurations_app/issues](https://bitbucket.org/ghalusa/tenable_configurations_app/issues)
+* [https://bitbucket.org/ghalusa/node.js-rest-api/issues](https://bitbucket.org/ghalusa/node.js-rest-api/issues)
