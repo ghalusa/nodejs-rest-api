@@ -15,7 +15,7 @@ router.post('/login', auth.login);
  */
 
 // curl -H "content-type:application/json" -H "x-access-token:ACCESS_TOKEN_PLACEHOLDER" -H "x-key:EMAIL_ADDRESS_PLACEHOLDER" http://geekl.in/api/configurations
-router.get('/api/configurations', configurations.getAll);
+router.get('/api/configurations/:sort_field?/:sort_order?/:start_record?/:stop_record?', configurations.getAll);
 
 // curl -H "content-type:application/json" -H "x-access-token:ACCESS_TOKEN_PLACEHOLDER" -H "x-key:EMAIL_ADDRESS_PLACEHOLDER" http://geekl.in/api/configuration/541a405494faef4be2adf4c7
 router.get('/api/configuration/:id', configurations.getOne);
