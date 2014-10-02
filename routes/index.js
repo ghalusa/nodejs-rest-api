@@ -7,6 +7,8 @@ var express = require('express')
  * Non-authenticated route.
  */
 
+router.get('/', configurations.getLanding);
+
 // curl -i -X POST -H "Content-Type: application/json" -d '{"email":"EMAIL_ADDRESS_PLACEHOLDER", "password":"PASSWORD_PLACEHOLDER"}' http://geekl.in/login
 router.post('/login', auth.login);
 

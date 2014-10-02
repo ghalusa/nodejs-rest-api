@@ -1,4 +1,5 @@
 var mongojs = require("mongojs")
+  , url = require("url")
   , configDB = require('../config/database.js');
 
 // Database variables and objects.
@@ -8,8 +9,32 @@ var connection_string = configDB.url
 
 var configurations = {
 
+  getLanding: function(req, res) {
+    res.status(200);
+    res.json({
+      "status": 200,
+      "message": "Welcome!"
+    });
+  },
+
   getAll: function(req, res) {
-    configurationsData.find().limit(20).sort({name : 1} , function(err, data){ // .limit(20)
+    // Set some initial variables.
+    var options = {};
+    var sortFieldArray = {};
+    var sortFieldName = req.params.sort_field ? req.params.sort_field : 'name';
+    // Sort - default 1 (ascending)
+    if(req.params.sort_order == 'desc') {
+      sortFieldArray[sortFieldName] = -1;
+    } else {
+      sortFieldArray[sortFieldName] = 1;
+    }
+    options.sort = sortFieldArray;
+    // Skip - default 0
+    options.skip = req.params.start_record ? parseInt(req.params.start_record) : 0;
+    // Limit - default 10
+    options.limit = req.params.stop_record ? parseInt(req.params.stop_record) : 10;
+    // Query
+    configurationsData.find({}, options).toArray(function(err, data) {
       if(data){
         res.json(data);
       } else {
