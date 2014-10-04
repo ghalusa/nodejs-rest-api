@@ -7,7 +7,8 @@ var jwt = require('jwt-simple')
 var connection_string = configDB.url
   , db = mongojs(connection_string, [configDB.connectionString])
   , configurations = db.collection("configurations")
-  , users = db.collection("users");
+  , users = db.collection("users")
+  , revokedTokens = db.collection("revokedTokens");
 
 var auth = {
 
@@ -53,6 +54,26 @@ var auth = {
         return;
       }
     });
+  },
+  logout: function(req, res) {
+    var token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];
+    var token_parts = token.split(".");
+    revokedTokens.save( {'tokenData':token_parts[2]}, function(err, data){
+      if(data){
+        res.status(200);
+        res.json({
+          "status": 200,
+          "message": "Logout successful. Token has been revoked."
+        });
+      } else {
+        res.status(500);
+        res.json({
+          "status": 500,
+          "message": "Internal server error",
+          "error": err
+        });
+      }
+    });
   }
 }
 
@@ -62,7 +83,7 @@ var auth = {
 
 function generateToken(user) {
   // Token validity (in days).
-  var expires = expiresIn(7);
+  var expires = expiresIn(1);
   var token = jwt.encode({
     exp: expires
   }, require('../config/secret')());

@@ -16,6 +16,9 @@ router.post('/login', auth.login);
  * Authenticated routes.
  */
 
+// curl -i -X POST -H "Content-Type: application/json"  -H "x-access-token:ACCESS_TOKEN_PLACEHOLDER" -H "x-key:EMAIL_ADDRESS_PLACEHOLDER" http://geekl.in/logout
+router.post('/logout', auth.logout);
+
 // curl -H "content-type:application/json" -H "x-access-token:ACCESS_TOKEN_PLACEHOLDER" -H "x-key:EMAIL_ADDRESS_PLACEHOLDER" http://geekl.in/api/configurations
 router.get('/api/configurations/:sort_field?/:sort_order?/:start_record?/:stop_record?', configurations.getAll);
 
