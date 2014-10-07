@@ -1,4 +1,4 @@
-# A RESTful app using Node.js #
+# A RESTful API Using Node.js #
 
 ### Overview ###
 
