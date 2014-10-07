@@ -13,6 +13,8 @@
 * You can use the connection settings sent to you
 * Or, you can create an account on Modulus (https://modulus.io/), with up to 64MB of free storage
 * Or, of course, you can run your own MongoDB instance
+* Duplicate "config/secret_sample.js" and rename it to "secret.js"
+* Modify the default "secret" to something different
 
 #### Next ####
 
