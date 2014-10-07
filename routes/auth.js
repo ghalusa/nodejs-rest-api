@@ -21,7 +21,7 @@ var auth = {
       res.status(401);
       res.json({
         "status": 401,
-        "message": "Invalid credentials"
+        "message": "Invalid (empty)"
       });
       return;
     }
@@ -40,7 +40,7 @@ var auth = {
           res.status(401);
           res.json({
             "status": 401,
-            "message": "Invalid credentials"
+            "message": "Invalid (validation)"
           });
           return;
         }
@@ -49,7 +49,7 @@ var auth = {
         res.status(401);
         res.json({
           "status": 401,
-          "message": "Invalid credentials"
+          "message": "Invalid (not found)"
         });
         return;
       }
@@ -84,6 +84,8 @@ var auth = {
 function generateToken(user) {
   // Token validity (in days).
   var expires = expiresIn(1);
+  // Token validity (in minutes - for testing).
+  // var expires = expiresInMinutes(1);
   var token = jwt.encode({
     exp: expires
   }, require('../config/secret')());
@@ -98,6 +100,11 @@ function generateToken(user) {
 function expiresIn(numDays) {
   var dateObj = new Date();
   return dateObj.setDate(dateObj.getDate() + numDays);
+}
+
+function expiresInMinutes(numMinutes) {
+  var now = new Date();
+  return now.setMinutes(now.getMinutes() + numMinutes);
 }
 
 module.exports = auth;

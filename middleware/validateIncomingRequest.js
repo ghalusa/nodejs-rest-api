@@ -17,6 +17,8 @@ module.exports = function(req, res, next) {
     var token_parts = token.split(".");
     var token_db = token_parts[2];
     var decoded = jwt.decode(token, require('../config/secret.js')());
+    // console.log('decoded');
+    // console.log(decoded);
 
     try {
       // Check to determine if the token is expired.

@@ -7,8 +7,13 @@ var app = express();
 
 app.set('json spaces', 2);
 
+app.set('views',__dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
 
 app.all('/*', function(req, res, next) {
   // CORS stuff.

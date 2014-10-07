@@ -1,0 +1,142 @@
+  <hr>
+  <div class="row">
+    <div class="col-sm-12 text-left" style="margin-top: 30px;">
+      <p>A sample for <a href="http://www.tenable.com/" target="_blank">Tenable</a> by 
+        <a href="http://about.me/goranhalusa" target="_blank">Gor</a> | Bitbucket <a href="https://bitbucket.org/ghalusa/node.js-rest-api" target="_blank">repository</a>.</p>
+    </div>
+  </div>
+  <div class="row" style="margin-top:20px;">
+    <div class="col-sm-4">
+      <a href="http://www.tenable.com/" target="_blank">
+        <img src="images/tenable-logo-200x54.png" alt="Tenable logo">
+      </a>
+    </div>
+    <div class="col-sm-4">
+      <a href="http://nodejs.org/" target="_blank">
+        <img src="images/nodejs.png" alt="Node.js logo">
+      </a>
+    </div>
+    <div class="col-sm-4">
+      <a href="http://www.mongodb.org/" target="_blank">
+        <img src="images/MongoDB_PoweredByCircle_Black.png" alt="MongoDB logo">
+      </a>
+    </div>
+  </div>
+
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    var hostname = 'http://' + $(location).attr('host');
+    var auth_container_visibility = $.cookie("loginVisibility");
+
+    if(auth_container_visibility == 'false') {
+      $('#authentication').hide();
+      $('h1').hide();
+      $('#togltxt').text('show login');
+      $('#togl').removeClass('glyphicon-chevron-up').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-down');
+    } else {
+      $('#authentication').show();
+      $('h1').show();
+      $('#togltxt').text('hide login');
+      $('#togl').removeClass('glyphicon-chevron-up').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+    }
+
+    $('form').submit(function (event) {
+      event.preventDefault();
+    });
+
+    $('#send_button').on('click', function(event){
+
+      $('#results').empty();
+
+      var method = $('#method').val();
+      var baseUrl = $('#baseUrl').val();
+      var xAccessToken = $('#xAccessToken').val();
+      var xKey = $('#xKey').val();
+      var jsonData = ((method == 'POST') || (method == 'PUT')) ? $('#data').val() : false;
+
+      if(baseUrl) {
+        var request = $.ajax({
+            type: method
+          , beforeSend: function (request)
+            {
+                request.setRequestHeader('x-access-token', xAccessToken)
+              , request.setRequestHeader('x-key', xKey)
+            }
+          , dataType: 'json'
+          , url: hostname+baseUrl
+          , contentType: 'application/json; charset=utf-8'
+          , data: jsonData
+        });
+        request.done(function( data ) {
+          $('#results').append('<pre>'+JSON.stringify(data, null, '\t')+'</pre>')
+        });
+        request.fail(function( jqXHR, textStatus ) {
+          $('#results').append('<pre>'+JSON.stringify(jqXHR.responseJSON, null, '\t')+'</pre>');
+        });
+      }
+
+    });
+
+    $('#login_button').on('click', function(event){
+
+      $('#auth_token_result').empty();
+
+      var username = $('#username').val();
+      var password = $('#password').val();
+
+      if(username && password) {
+        var login_request = $.ajax({
+            type: 'POST'
+          , dataType: 'json'
+          , url: hostname+'/login'
+          , contentType: 'application/json; charset=utf-8'
+          , data: JSON.stringify({email: username, password: password})
+        });
+        login_request.done(function( data ) {
+          var returnedToken = JSON.stringify(data.token, null, '\t');
+          returnedToken = returnedToken.replace(/\"/g, '');
+          $('#auth_token_result').append('<input type="text" value="'+returnedToken+'" class="form-control">')
+          $('#auth_token_result input').select();
+          $('#auth_token_result').append('<p class="text-center text-muted"><em>This authentication token is valid for 24 hours. Copy and save it for making requests against API.</em></p>');
+        });
+        login_request.fail(function( jqXHR, textStatus ) {
+          $('#auth_token_result').append('<pre>'+JSON.stringify(jqXHR.responseJSON, null, '\t')+'</pre>');
+        });
+      }
+
+    });
+
+    $('#toggle_auth_container').on('click', function(event){
+      $('#authentication').slideToggle();
+      if($('#togltxt').text() == 'hide login') {
+        $('#togltxt').text('show login');
+        $('h1').slideUp();
+        $('#togl').removeClass('glyphicon-chevron-up').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-down');
+        $.cookie("loginVisibility", "false", { expires: new Date(2014, 12, 31, 11, 59, 59) });         
+      } else {
+        $('#togltxt').text('hide login');
+        $('h1').slideDown();
+        $('#togl').removeClass('glyphicon-chevron-up').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
+        $.cookie("loginVisibility", "true", { expires: new Date(2014, 12, 31, 11, 59, 59) });         
+      }
+    });
+
+    $('#method').on('change', function(event){
+      var selected = $(this).val();
+      if((selected == 'POST') || (selected == 'PUT')) {
+        $('#textarea_container').fadeIn();
+      }
+      if((selected == 'GET') || (selected == 'DELETE')) {
+        $('#textarea_container').fadeOut();
+      }
+    });
+
+  });
+</script>
+</body>
+</html>

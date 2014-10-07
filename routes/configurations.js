@@ -9,14 +9,6 @@ var connection_string = configDB.url
 
 var configurations = {
 
-  getLanding: function(req, res) {
-    res.status(200);
-    res.json({
-      "status": 200,
-      "message": "Welcome!"
-    });
-  },
-
   getAll: function(req, res) {
     // Set some initial variables.
     var options = {};
@@ -113,7 +105,7 @@ var configurations = {
     var id = req.params.id;
     configurationsData.remove({_id:mongojs.ObjectId(id)} , function(err, data){
       if(data){
-        res.json(true);
+        res.json('Record \''+id+'\' deleted.');
       } else {
         res.status(404);
         res.json({
