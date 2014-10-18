@@ -1,14 +1,18 @@
 var express = require('express')
   , router = express.Router()
   , auth = require('./auth.js')
-  , configurations = require('./configurations.js');
+  , configurations = require('./configurations.js')
+  , config = require('../config/configurations.js');
 
 /*
  * Non-authenticated routes.
  */
 
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Configurations REST API' });
+  res.render(
+      'index'
+    , { title: 'Configurations REST API', google_analytics_key: config.googleAnalyticsKey }
+  );
 });
 
 router.post('/login', auth.login);
