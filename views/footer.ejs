@@ -110,12 +110,12 @@
       $('#authentication').slideToggle();
       if($('#togltxt').text() == 'hide login') {
         $('#togltxt').text('show login');
-        $('h1').slideUp();
+        // $('h1').slideUp();
         $('#togl').removeClass('glyphicon-chevron-up').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-down');
         $.cookie("loginVisibility", "false", { expires: new Date(2014, 12, 31, 11, 59, 59) });         
       } else {
         $('#togltxt').text('hide login');
-        $('h1').slideDown();
+        // $('h1').slideDown();
         $('#togl').removeClass('glyphicon-chevron-up').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
         $.cookie("loginVisibility", "true", { expires: new Date(2014, 12, 31, 11, 59, 59) });         
       }
