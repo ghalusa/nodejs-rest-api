@@ -2,8 +2,8 @@
 
 ### Overview ###
 
-* Lets an authenticated user insert and delete configurations
-* Allows for the listing of configurations with more than 100,000 entries
+* Lets an authenticated user insert and delete server configurations
+* Allows for the listing of server configurations with more than 100,000 entries
 * Allows for sorting the listing by name, hostname, port, or username
 
 ### How do I get set up? ###
