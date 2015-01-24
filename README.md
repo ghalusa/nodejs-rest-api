@@ -10,8 +10,7 @@
 
 * Clone the repository
 * Duplicate "config/database_sample.js" and rename it to "database.js"
-* You can use the connection settings sent to you
-* Or, you can create an account on Modulus (https://modulus.io/), with up to 64MB of free storage
+* You can create an account on Modulus (https://modulus.io/), with up to 64MB of free storage
 * Or, of course, you can run your own MongoDB instance
 * Duplicate "config/secret_sample.js" and rename it to "secret.js"
 * Modify the default "secret" to something different
@@ -47,6 +46,6 @@ forever start server.js
 ### Support ###
 
 * Goran Halusa
-* [ghalusa@gmail.com](mailto:ghalusa@gmail.com)
+* [ghalusa@webcraftr.com](mailto:gor@webcraftr.com)
 * Issue Tracker
-* [https://bitbucket.org/ghalusa/node.js-rest-api/issues](https://bitbucket.org/ghalusa/node.js-rest-api/issues)
+* [https://github.com/ghalusa/nodejs-rest-api/issues](https://github.com/ghalusa/nodejs-rest-api/issues)
