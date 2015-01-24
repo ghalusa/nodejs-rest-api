@@ -39,7 +39,7 @@
   <div class="row" style="margin-bottom:20px;">
     <div class="col-sm-8">
       <h2>Send Requests</h2>
-      <p><i class="glyphicon glyphicon glyphicon-log-out" style="color:red;"></i> <strong style="color:red;">To logout:</strong> send a POST request to http://geekl.in/logout along with the x-access-token (auth token) 
+      <p><i class="glyphicon glyphicon glyphicon-log-out" style="color:red;"></i> <strong style="color:red;">To logout:</strong> send a POST request to http://localhost:3000/logout along with the x-access-token (auth token) 
         and x-key (email address). <em>This will revoke your current auth token.</em></p>
     </div>
   </div>
@@ -117,14 +117,14 @@
             }
           </pre>
           <h5 class="text-info">cURL</h5>
-          <pre>curl -i -X POST -H "Content-Type: application/json" -d '{"email":"youremail@gmail.com", "password":"yourpassword"}' http://geekl.in/login</pre>
+          <pre>curl -i -X POST -H "Content-Type: application/json" -d '{"email":"youremail@gmail.com", "password":"yourpassword"}' http://localhost:3000/login</pre>
           <hr>
           <h4>POST Logout</h4>
           <h4 class="text-muted">
             /logout
           </h4>
           <h5 class="text-info">cURL</h5>
-          <pre>curl -i -X POST -H "Content-Type: application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" http://geekl.in/logout</pre>
+          <pre>curl -i -X POST -H "Content-Type: application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" http://localhost:3000/logout</pre>
           <hr>
           <h4>GET Configurations</h4>
           <p>sort field / order / skip / max</p>
@@ -132,14 +132,14 @@
             /api/configurations/port/asc/0/50
           </h4>
           <h5 class="text-info">cURL</h5>
-          <pre>curl -i -X GET -H "content-type:application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" http://geekl.in/api/configurations/port/asc/0/50</pre>
+          <pre>curl -i -X GET -H "content-type:application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" http://localhost:3000/api/configurations/port/asc/0/50</pre>
           <hr>
           <h4>GET Configuration</h4>
           <h4 class="text-muted">
             /api/configuration/541a405494faef4be2adf4d1
           </h4>
           <h5 class="text-info">cURL</h5>
-          <pre>curl -i -X GET -H "content-type:application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" http://geekl.in/api/configuration/541a405494faef4be2adf4d1</pre>
+          <pre>curl -i -X GET -H "content-type:application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" http://localhost:3000/api/configuration/541a405494faef4be2adf4d1</pre>
           <hr>
           <h4>POST Configuration</h4>
           <h4 class="text-muted">
@@ -155,7 +155,7 @@
             }
           </pre>
           <h5 class="text-info">cURL</h5>
-          <pre>curl -i -X POST -H "content-type:application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" -d '{"name":"host221122" , "hostname":"nodejs.developer.io" , "port":"2112", "username":"nodejsdev@developer.io"}' http://geekl.in/api/configuration/</pre>
+          <pre>curl -i -X POST -H "content-type:application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" -d '{"name":"host221122" , "hostname":"nodejs.developer.io" , "port":"2112", "username":"nodejsdev@developer.io"}' http://localhost:3000/api/configuration/</pre>
           <hr>
           <h4>PUT Configuration</h4>
           <h4 class="text-muted">
@@ -171,14 +171,14 @@
             }
           </pre>
           <h5 class="text-info">cURL</h5>
-          <pre>curl -i -X PUT -H "content-type:application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" -d '{ "name": "host104", "hostname": "zzzzzz.georgianna.biz", "port": 2179, "username": "zzzzzz@karelle.org" }' http://geekl.in/api/configuration/541a405494faef4be2adf4d1</pre>
+          <pre>curl -i -X PUT -H "content-type:application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" -d '{ "name": "host104", "hostname": "zzzzzz.georgianna.biz", "port": 2179, "username": "zzzzzz@karelle.org" }' http://localhost:3000/api/configuration/541a405494faef4be2adf4d1</pre>
           <hr>
           <h4>DELETE Configuration</h4>
           <h4 class="text-muted">
             /api/configuration/541a405494faef4be2adf4d1
           </h4>
           <h5 class="text-info">cURL</h5>
-          <pre>curl -i -X DELETE -H "content-type:application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" http://geekl.in/api/configuration/541a405494faef4be2adf4d1</pre>
+          <pre>curl -i -X DELETE -H "content-type:application/json" -H "x-access-token:YOUR_AUTH_TOKEN" -H "x-key:youremail@gmail.com" http://localhost:3000/api/configuration/541a405494faef4be2adf4d1</pre>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
