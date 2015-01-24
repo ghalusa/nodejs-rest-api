@@ -46,6 +46,6 @@ forever start server.js
 ### Support ###
 
 * Goran Halusa
-* [ghalusa@webcraftr.com](mailto:gor@webcraftr.com)
+* [gor@webcraftr.com](mailto:gor@webcraftr.com)
 * Issue Tracker
 * [https://github.com/ghalusa/nodejs-rest-api/issues](https://github.com/ghalusa/nodejs-rest-api/issues)
