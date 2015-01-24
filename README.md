@@ -8,6 +8,8 @@
 
 ### How do I get set up? ###
 
+**Note: I will be providing schemas, or ODM (Object Data Mapping), shortly... via Mongoose.**
+
 * Clone the repository
 * Duplicate "config/database_sample.js" and rename it to "database.js"
 * You can create an account on Modulus (https://modulus.io/), with up to 64MB of free storage
